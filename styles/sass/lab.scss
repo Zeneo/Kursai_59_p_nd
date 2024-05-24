@@ -1,0 +1,162 @@
+
+@mixin center {
+  margin-left: auto;
+  margin-right: auto;
+}
+@mixin bg($background, $bg_color: false, $bg_size: false, $bg_pos: false) {
+  background-image: url($background);
+  background-repeat: no-repeat;
+  @if $bg_size {
+    background-size: $bg-size;
+  }
+  @if $bg_color {
+    background-color: $bg_color;
+  }
+  @if $bg_pos {
+    background-position: $bg_pos;
+  }
+}
+$color_red: rgb(250, 82, 82);
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Helvetica Neue", serif;
+  background-color: #333;
+  text-align: center;
+}
+.d-flex {
+  display: flex;
+}
+h1 {
+  color: #fff;
+  margin-top: 30px;
+  font-family: "Helvetica Neue", Verdana, serif;
+  text-shadow: 4px 4px 4px #aaa;
+}
+.center {
+  margin-top: 50px;
+  max-width: 1280px;
+  @include center()
+}
+.main-width {
+  width: 1080px;
+  height: 360px;
+  background-color: #fff;
+  position: relative;
+}
+@mixin sprite($bg_img, $bg_w, $bg_h, $bg_pos_t, $bg_pos_r, $bg_size) {
+  width: $bg_w;
+  height: $bg_h;
+  background-image: url('../../img/'+$bg_img);
+  background-position: (-$bg_pos_t) (-$bg_pos_r);
+  background-repeat: no-repeat;
+  position: absolute;
+}
+.field_cnt {
+  width: 1080px;
+  height: 360px;
+  background-image: url('../../img/grass.jpg');
+  background-repeat: no-repeat;
+}
+.sprite_cnt {
+  position: relative;
+  overflow: hidden;
+  margin: 0 auto;
+  top: 230px;
+  width: 1000px;
+  height: 130px;
+}
+.sprite {
+  @include sprite('sprite.png', 70px,70px,70px,0,200%);
+  cursor: pointer;
+  display: inline-block;
+  position: absolute;
+  top: 40px;
+  left: 400px;
+}
+.spire_inv {
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
+}
+.smooth {
+  transition: left 100ms, top 100ms;
+}
+.column_cnt {
+  position: absolute;
+  z-index: 100;
+  height: 150px;
+  width: 15px;
+  background-color: #721c24;
+  box-shadow: 2px 2px 3px #333;
+
+  h3 {
+    position: absolute;
+    top: -35px;
+    width: 100px;
+    color: #fff;
+    text-shadow: 2px 2px 2px #333;
+  }
+  .quantity_cnt {
+    position: relative;
+    height: 100%;
+    width: 100%;
+  }
+  .quantity {
+    position: absolute;
+    bottom: 0;
+    background-color: #1c7430;
+    height: 100%;
+    width: 100%;
+    z-index: 110;
+  }
+}
+.hunger_cnt {
+  top: 50px;
+  left: 20px;
+  .title {
+    position: relative;
+  }
+  h3 {
+    text-align: left;
+  }
+}
+.health_cnt {
+  top: 50px;
+  right: 20px;
+  .title {
+    position: relative;
+  }
+  h3 {
+    text-align: right;
+    right: 0;
+  }
+}
+.died {
+  position: fixed;
+  z-index:110;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.6);
+}
+.msg-cnt {
+  position: absolute;
+  z-index: 120;
+  top: 50%;
+  left: 50%;
+  color: #c82333;
+  margin-left: -250px;
+  margin-top: -50px;
+  height: 50px;
+  width: 500px;
+  line-height: 50px;
+  text-align: center;
+  h1 {
+    color: #c82333;
+    text-shadow: 0 0 4px #fff,0 0 10px #fff;
+  }
+}
